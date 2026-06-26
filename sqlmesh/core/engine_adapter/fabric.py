@@ -9,6 +9,8 @@ from sqlglot import exp
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_result
 from sqlmesh.core.engine_adapter.mssql import MSSQLEngineAdapter
 from sqlmesh.core.engine_adapter.shared import (
+    CommentCreationTable,
+    CommentCreationView,
     InsertOverwriteStrategy,
 )
 from sqlmesh.utils.errors import SQLMeshError
@@ -30,6 +32,8 @@ class FabricEngineAdapter(MSSQLEngineAdapter):
     SUPPORTS_TRANSACTIONS = False
     SUPPORTS_CREATE_DROP_CATALOG = True
     INSERT_OVERWRITE_STRATEGY = InsertOverwriteStrategy.DELETE_INSERT
+    COMMENT_CREATION_TABLE = CommentCreationTable.UNSUPPORTED
+    COMMENT_CREATION_VIEW = CommentCreationView.UNSUPPORTED
 
     def __init__(
         self, connection_factory_or_pool: t.Union[t.Callable, t.Any], *args: t.Any, **kwargs: t.Any
