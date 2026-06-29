@@ -32,6 +32,8 @@ class FabricEngineAdapter(MSSQLEngineAdapter):
     SUPPORTS_TRANSACTIONS = False
     SUPPORTS_CREATE_DROP_CATALOG = True
     INSERT_OVERWRITE_STRATEGY = InsertOverwriteStrategy.DELETE_INSERT
+    # There is no standard method to handle comments in Fabric for now, so we disable it.
+    # Otherwise, it would be inherited from MSSQL and would not work.
     COMMENT_CREATION_TABLE = CommentCreationTable.UNSUPPORTED
     COMMENT_CREATION_VIEW = CommentCreationView.UNSUPPORTED
 
